@@ -18,15 +18,14 @@ http.createServer((req, resp) => {
         }
     }
 
-    
     else if(reqUrl.pathname == "/home"){
-        if(reqUrl.query.nome == "david"){
-        resp.end("<h1>Bem vindo David</h1>");
-        } else {
+        let nome = reqUrl.query.nome;
+        if(nome == null){
             resp.end("<h1>Home</h1>");
+        }else{
+            resp.end("<h1>Bem vindo " + nome);
         }
     }
-
 
     else if(reqUrl.pathname == "/settings"){
         if(reqUrl.query.senha == "12345"){
@@ -35,7 +34,6 @@ http.createServer((req, resp) => {
             resp.statusCode = 403;
             resp.end();
         }
-        resp.end();
     } else {
         resp.end("<h1>Bem Vindo ao nosso Servidor</h1>");
     }
